@@ -1,0 +1,24 @@
+{
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/23.11";
+  inputs.flake-utils.url = "github:numtide/flake-utils";
+  outputs = { nixpkgs, flake-utils, ... }:
+    let
+      system = flake-utils.lib.system.x86_64-linux;
+      pkgs = nixpkgs.legacyPackages.${system};
+      rofiLauncher = pkgs.callPackage ./rofi-launcher.nix { };
+      packageSet = packages:
+        let
+          f = import ./wrapper.nix;
+          g = import ./desktop-item.nix;
+          h = { inherit rofiLauncher; };
+        in with packages; {
+          books = callPackage (f "books" "/home/hippoid/books") h;
+          papers = callPackage (f "papers" "/home/hippoid/documents/papers") h;
+          booksDesktopItem = callPackage (g "books") { };
+          papersDesktopItem = callPackage (g "papers") { };
+        };
+    in {
+      overlays.all = _: prev: packageSet prev;
+      packages.${system} = packageSet pkgs;
+    };
+}
