@@ -13,7 +13,6 @@
           h = { inherit rofiLauncher; };
         in with packages; {
           books = callPackage (f "books" "/home/hippoid/books") h;
-          videos = callPackage (f "videos" "/home/hippoid/videos") h;
           papers = callPackage (f "papers" "/home/hippoid/documents/papers") h;
           techtalk =
             callPackage (f "techtalk" "/home/hippoid/documents/tech-talks") h;
