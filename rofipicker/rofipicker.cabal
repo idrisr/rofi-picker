@@ -1,0 +1,24 @@
+cabal-version: 3.0
+name:          rofipicker
+version:       0.1.0.0
+license:       MIT
+build-type:    Simple
+
+common warnings
+  ghc-options:        -Wall
+  default-language:   Haskell2010
+  default-extensions:
+    NoStarIsType
+    OverloadedStrings
+
+  build-depends:
+    , base                  ^>=4.18.2.1
+    , filepath
+    , foldl
+    , optparse-applicative
+    , text
+    , turtle
+
+executable rofipicker
+  import:  warnings
+  main-is: Main.hs

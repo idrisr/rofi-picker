@@ -7,7 +7,7 @@ stdenvNoCC.mkDerivation {
 
   installPhase = ''
     mkdir -p "$out/bin"
-    cp ${rofiLauncher}/bin/rofilauncher $out/bin/${name}
+    cp ${rofiLauncher}/bin/rofipicker $out/bin/${name}
     wrapProgram $out/bin/${name} --add-flags "${folder}"
   '';
 }

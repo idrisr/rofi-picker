@@ -5,7 +5,7 @@
     let
       system = flake-utils.lib.system.x86_64-linux;
       pkgs = nixpkgs.legacyPackages.${system};
-      rofiLauncher = pkgs.callPackage ./rofi-launcher.nix { };
+      rofiLauncher = pkgs.haskell.packages.ghc96.callPackage ./rofipicker { };
       packageSet = packages:
         let
           f = import ./wrapper.nix;
